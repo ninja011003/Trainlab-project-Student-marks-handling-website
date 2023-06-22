@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Port</title>
+  <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="css/swiper-bundle.min.css">
+</head>
+
+<body>
+  <section>
+    <nav>
+      <a href="#" class="logo">
+        <img src="img/TrainLab_Logo.png" alt="" />
+      </a>
+      <div>
+        <ul class="navbar">
+          <li><a href="home.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="#">Course</a></li>
+          <li><a href="excellence.html">Center of Excellence</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><button><a href="login.html">Login</a></button></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="login">
+      <div class="wrapper">
+        <div class="title">Login Form</div>
+        <form action="/login" method="post">
+          <div class="field">
+            <input type="text" class="form-control" id="email" name="email" required>
+            <label>Email Address</label>
+          </div>
+          <div class="field">
+            <input type="password" class="form-control" id="password" name="password" required>
+            <label>Password</label>
+          </div>
+          <div class="content">
+            <div class="checkbox">
+              <input type="checkbox" id="remember-me">
+              <label for="remember-me">Remember me</label>
+            </div>
+          </div>
+          <center><div class="field">
+            <input type="submit" value="Login">
+          </div></center>
+        </form>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

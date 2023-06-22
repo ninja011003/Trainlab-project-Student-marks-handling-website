@@ -1,0 +1,200 @@
+/* Nav Bar animation */
+nav,section {
+    animation: fadeInDown 1s ease-in-out;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: white;
+    background-size: cover;
+}
+
+section {
+    height: 100vh;
+}
+
+nav {
+
+    top: 0;
+    right: 0;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    height: 90px;
+    background: url(img/Nav_BG2.jpg);
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+    margin: 5px 5px;
+}
+
+nav a img {
+    margin-left: 50px;
+    height: 60px;
+    filter: drop-shadow(0 20px 25px white);
+}
+
+nav div {
+    margin-right: 30px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.navbar li {
+    list-style: none;
+}
+
+.navbar li a {
+    text-decoration: none;
+    color: white;
+    transition: .5s;
+    text-shadow: 0 0 10px #EFEFEF;
+    transition: .5s;
+}
+
+.navbar li a:hover {
+    text-shadow: 0 15px 10px #EFEFEF;
+}
+
+.navbar li button {
+    padding: 5px 30px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 25px;
+    transition: .5s;
+    color: #123589;
+}
+.navbar li button a{
+    color: #123589;
+}
+.navbar li button:hover a{
+    color: #ffffff;
+}
+.navbar li button:hover {
+    transform: scale(1.05);
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+}
+/* -- About -- */
+.about{
+    text-align: justify;
+    padding: 10px;
+    margin: 5px 5px;
+    font-size: 20px;
+}
+.about h1{
+    text-align: center;
+    padding: 10px;
+    color: #123589;
+    font-weight: 200;
+    font-size: 30px;
+}
+.about h1:nth-child(3){
+    text-align: left;
+    padding: 10px;
+    padding-left: 0;
+}
+.about p:nth-child(2){
+    text-align: left;
+}
+.list{
+    margin-left: 30px;
+    list-style-type: circle;
+}
+.cards{
+    padding: 70px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+.card{
+    display: flex;
+    align-items: center;
+    width: 700px;
+    height: 250px;
+    background: linear-gradient(to top,rgba(0, 0, 0, 0.06),#0270ff37);
+    padding: 20px;
+    border-radius: 15px;
+    transition: .5s;
+}
+.card:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.349);
+}
+.card img{
+    aspect-ratio: 3/2;
+    width: 300px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.445);
+}
+.card .content{
+    padding-left: 100px;
+}
+.card .content{
+    font-size: 13px;
+}
+.facilities h1{
+    text-align: center;
+    padding-top: 25px;
+    color: #123589;
+    font-weight: 200;
+    font-size: 30px;
+}
+.facilities .main{
+    display: flex;
+    gap: 30px;
+    margin: 5px 5px;
+    align-items: center;
+    justify-content: center;
+}
+.facilities .main .sub div{
+    display: flex;
+}
+.facilities .main .video{
+    background: transparent;
+    width: 700px;
+    padding: 10px;
+}
+.facilities .main .sub{
+    background: transparent;
+    width: 700px;
+    padding: 10px;
+}
+video{
+    border-radius: 15px;
+    padding: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.251);
+}
+.sub div video{
+    margin: 10px 0px;
+}
+.sub div div{
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    text-align: justify;
+}

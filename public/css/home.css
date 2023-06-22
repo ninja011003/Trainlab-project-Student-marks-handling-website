@@ -1,0 +1,492 @@
+/* Nav Bar animation */
+nav {
+    animation: fadeInDown 1s ease-in-out;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Video animation */
+.video {
+    animation: zoomIn 1s ease-in-out;
+}
+
+@keyframes zoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Highlight section animation */
+.header {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.work {
+    animation: fadeInUp 1s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Trainers section animation */
+.train {
+    animation: slideInLeft 1s ease-in-out;
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.card {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Top Companies section animation */
+.companies {
+    animation: scaleIn 1s ease-in-out;
+}
+
+@keyframes scaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: white;
+    background-size: cover;
+}
+
+section {
+    height: 100vh;
+}
+
+nav {
+
+    top: 0;
+    right: 0;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    height: 90px;
+    background: url(img/Nav_BG2.jpg);
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+    margin: 5px 5px;
+}
+
+nav a img {
+    margin-left: 50px;
+    height: 60px;
+    filter: drop-shadow(0 20px 25px white);
+}
+
+nav div {
+    margin-right: 30px;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.navbar li {
+    list-style: none;
+}
+
+.navbar li a {
+    text-decoration: none;
+    color: white;
+    transition: .5s;
+    text-shadow: 0 0 10px #EFEFEF;
+    transition: .5s;
+}
+
+.navbar li a:hover {
+    text-shadow: 0 15px 10px #EFEFEF;
+}
+
+.navbar li button {
+    padding: 5px 30px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    border: 2px solid white;
+    border-radius: 25px;
+    transition: .5s;
+    color: #123589;
+}
+
+.navbar li button:hover {
+    transform: scale(1.05);
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+video {
+    height: 85vh;
+    padding: 5px 190px;
+    background: #EFEFEF;
+    margin: 5px 5px;
+    border-radius: 15px;
+}
+.navbar li button a{
+    color: #123589;
+}
+.navbar li button:hover a{
+    color: #ffffff;
+}
+/* -- Highlight -- */
+.header {
+    margin-top: 20px;
+}
+
+.heading {
+    text-align: center;
+    background: url(img/Nav_BG2.jpg);
+    background-size: cover;
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    font-weight: 200;
+    font-size: 30px;
+    margin: 5px 5px;
+}
+
+#portfolio {
+    padding: 70px 20px;
+    padding-bottom: 120px;
+    border-radius: 20px;
+    background-color: #EFEFEF;
+    margin: 5px 5px;
+    margin-top: 45px;
+}
+
+.work-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+    margin-top: 50px;
+}
+
+.work {
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.work img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    transition: transform 0.5s;
+}
+
+.layer {
+    width: 100%;
+    height: 0;
+    color: white;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), #123589);
+    border-radius: 10px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 14px;
+    transition: height 0.5s;
+}
+
+.layer h3 {
+    font-weight: 500;
+    margin-bottom: 5px;
+    font-size: 30px;
+}
+
+.layer p {
+    font-size: 15px;
+}
+
+.layer a {
+    margin-top: 20%;
+    color: #123589;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 10px;
+    background: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.work:hover img {
+    transform: scale(1.1);
+}
+
+.work:hover .layer {
+    height: 100%;
+}
+
+/* -- Trainers -- */
+
+.train {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EFEFEF;
+    min-height: 75vh;
+    border-radius: 20px;
+    margin: 5px 5px;
+    margin-top: 40px;
+}
+
+.slide-container {
+    max-width: 1400px;
+    width: 100%;
+    padding: 40px 0;
+}
+
+.slide-content {
+    margin: 0 40px;
+    overflow: hidden;
+    border-radius: 25px;
+}
+
+.card {
+    border-radius: 25px;
+    background-color: #FFF;
+}
+
+.image-content,
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 14px;
+}
+
+.image-content {
+    position: relative;
+    row-gap: 5px;
+    padding: 25px 0;
+}
+
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #123689;
+    border-radius: 25px 25px 0 25px;
+}
+
+.overlay::before,
+.overlay::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+    height: 40px;
+    width: 40px;
+    background-color: #123589;
+}
+
+.overlay::after {
+    border-radius: 0 25px 0 0;
+    background-color: #FFF;
+}
+
+.card-image {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background: transparent;
+    padding: 3px;
+}
+
+.card-image .card-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #123589;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+}
+
+.description {
+    font-size: 14px;
+    color: #707070;
+    text-align: center;
+}
+
+.button {
+    border: none;
+    font-size: 16px;
+    color: #FFF;
+    padding: 8px 16px;
+    background-color: #123589;
+    border-radius: 6px;
+    margin: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background: #123689c7;
+}
+
+.swiper-navBtn {
+    color: #123589;
+    transition: color 0.3s ease;
+}
+
+.swiper-navBtn:hover {
+    color: #123589;
+}
+
+.swiper-navBtn::before,
+.swiper-navBtn::after {
+    font-size: 35px;
+}
+
+.swiper-button-next {
+    right: 0;
+}
+
+.swiper-button-prev {
+    left: 0;
+}
+
+.swiper-pagination-bullet {
+    background-color: #123589;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    background-color: #123589;
+}
+
+@media screen and (max-width: 768px) {
+    .slide-content {
+        margin: 0 10px;
+    }
+
+    .swiper-navBtn {
+        display: none;
+    }
+}
+
+/* -- Top Companies -- */
+.companies {
+    background: #EFEFEF;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 40px 10px;
+    margin: 5px 5px;
+    margin-top: 50px;
+    border-radius: 20px;
+}
+
+.companies img {
+    width: 350px;
+    background: #FFF;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+    padding: 10px;
+    border-radius: 20px;
+    transition: .55s;
+}
+
+.companies img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px 1px #1236899f;
+}
