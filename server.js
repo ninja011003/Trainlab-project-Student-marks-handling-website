@@ -7,19 +7,17 @@ const bcrypt = require('bcrypt');
 const { google } = require('googleapis');
 const readline = require('readline');
 //const pdfHTML = require('html-pdf');
-const { PDFDocument, StandardFonts,rgb } = require('pdf-lib');
+const { PDFDocument, StandardFonts, rgb } = require('pdf-lib');
 const puppeteer = require('puppeteer');
-var output ="<html><body><h1>No data generated</h1></body></html>";
-var flag=0;
+var output = "<html><body><h1>No data generated</h1></body></html>";
+var flag = 0;
 
-// use new;
-// create table it(batch varchar(10),reqno varchar(10),sname varchar(50),syear varchar(5),semester varchar(5),course varchar(30),mark int);
 // Load credentials from the JSON file
 const credentials = require('./credentials.json');
 //console.log(credentials);
 
-async function openBrowser(port){
-  const url =`http://localhost:${port}`;
+async function openBrowser(port) {
+  const url = `http://localhost:${port}`;
   const open = await import('open');
   await open.default(url);
 }
@@ -34,8 +32,8 @@ const client = new google.auth.JWT(
 );
 
 // Function to save contact information to Google Sheets
-async function saveToGoogleSheets(name,email,phone,message) {
-  const spreadsheetId = '<enter your spreadsheet ID>';
+async function saveToGoogleSheets(name, email, phone, message) {
+  const spreadsheetId = '1jCbYWXJKD0cZvPxhsoUOeddo5g1NLhCzK-C5z79c1pY';
   const sheetName = 'contact';
 
   try {
@@ -55,7 +53,7 @@ async function saveToGoogleSheets(name,email,phone,message) {
 
     // Append the new contact information to the sheet
     const resource = {
-      values: [[name, email,phone,message]],
+      values: [[name, email, phone, message]],
     };
 
     const result = await sheets.spreadsheets.values.append({
@@ -78,7 +76,7 @@ async function saveToGoogleSheets(name,email,phone,message) {
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'pranavesh',
+  password: 'jashanniranjan',
   database: 'new',
 });
 const generateTable = (rowPacket) => {
@@ -126,16 +124,15 @@ app.use(express.urlencoded({ extended: false }));
 // Serve the HTML file
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'home.html'));
+
   //res.render('admin_panel.ejs')
 });
 
-app.post('/contact',(req,res)=>{
-  const {name,email,phone,message}= req.body;
-  saveToGoogleSheets(name,email,phone,message);
+app.post('/contact', (req, res) => {
+  const { name, email, phone, message } = req.body;
+  saveToGoogleSheets(name, email, phone, message);
   res.redirect('/contactpage');
 })
-
-
 
 app.get('/generate-pdf', async (req, res) => {
   try {
@@ -210,14 +207,14 @@ app.get('/generate-pdf', async (req, res) => {
         </footer>
         </body>
       </html>`;
-      
+
     const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
     await page.setContent(html);
-  
+
     const pdf = await page.pdf({ format: 'A4' });
     await browser.close();
-  
+
     res.setHeader('Content-Disposition', 'attachment; filename="Marklist.pdf"');
     res.setHeader('Content-Type', 'application/pdf');
     res.send(pdf);
@@ -227,59 +224,70 @@ app.get('/generate-pdf', async (req, res) => {
   }
 });
 
-
-app.get('/logout',(req,res)=>{
-  flag=0;
+app.get('/logout', (req, res) => {
+  flag = 0;
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 })
 
-app.post('/uploadData',(req,res)=>{
+app.post('/uploadData', (req, res) => {
   console.log(req.body.data)
   console.log("Connected! in addDataExcel");
-  var sql = `INSERT INTO ${req.body.dept} (batch,reqno,sname,syear,semester,course,mark) VALUES ?`;                   
-  db.query(sql,[req.body.data], function (err, result) {
+  var sql = `INSERT INTO ${req.body.dept} (batch,reqno,sname,syear,semester,course,mark) VALUES ?`;
+  db.query(sql, [req.body.data], function (err, result) {
     if (err) throw err;
     console.log("record inserted");
-    return res.json({data:req.body.data})
+    return res.json({ data: req.body.data })
   });
 })
 
 app.post('/search', (req, res) => {
+
   //console.log(req.body);
   var sqlQuery;
-  if(req.body.batch=="select"||req.body.year=="select"||req.body.semester=="select"){
-      sqlQuery = "SELECT * FROM " + req.body.dept +";";
+  if (req.body.batch == "select" && req.body.year == "select" && req.body.semester == "select") {
+    sqlQuery = "SELECT * FROM " + req.body.dept + ";";
+  }
+  else if(req.body.batch == "select" && req.body.year == "select" && req.body.semester != "select"){
+    sqlQuery = "SELECT * FROM " + req.body.dept + " where semester= '" + req.body.semester + "';";
+  }
+  else if(req.body.batch == "select" && req.body.year != "select" && req.body.semester == "select"){
+    sqlQuery = "SELECT * FROM " + req.body.dept + " where syear= '" + req.body.year + "';";
+  }
+  else if(req.body.batch != "select" && req.body.year == "select" && req.body.semester == "select"){
+    sqlQuery = "SELECT * FROM " + req.body.dept + " where batch= '" + req.body.batch + "';";
+  }
+  else if(req.body.batch != "select" && req.body.year != "select" && req.body.semester == "select"){
+    sqlQuery = "SELECT * FROM " + req.body.dept + " where batch= '" + req.body.batch +"'and syear='"+ req.body.year+"';";
+  }
+  else if(req.body.batch == "select" && req.body.year != "select" && req.body.semester != "select"){
+    sqlQuery = "SELECT * FROM " + req.body.dept + " where semester= '" + req.body.semester +"'and syear='"+ req.body.year+"';";
+  }
+  else if(req.body.batch != "select" && req.body.year == "select" && req.body.semester != "select"){
+    sqlQuery = "SELECT * FROM " + req.body.dept + " where batch= '" + req.body.batch +"'and semester='"+ req.body.semester+"';";
   }
   else{
-      sqlQuery = "SELECT * FROM " + req.body.dept + " where batch= '" + req.body.batch + "' and syear = '" + req.body.year + "' and semester='" + req.body.semester + "';";
-      console.log(sqlQuery);
+    sqlQuery = "SELECT * FROM " + req.body.dept + " where batch= '" + req.body.batch + "' and syear = '" + req.body.year + "' and semester='" + req.body.semester + "';";
+    //console.log(sqlQuery);
   }
+  console.log(sqlQuery);
   db.query(sqlQuery, (error, results, fields) => {
     if (error) {
-      console.error('Error executing MySQL query:', error);
-      return;
+      //console.error('Error executing MySQL query:', error);
+      //return;
+      res.send("<pre>Select Department to view</pre>");
     }
     // console.log(results);
     //console.log('Query results:', results);
     // Assuming `result` is your RowDataPacket
-
-    output = generateTable(results);
-
-    res.send(output);
-    
-/*
-    fs.writeFile(path.join(__dirname, 'public/result.html'), f + "" + output + "" + s, 'utf8', (err) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      console.log('Data added to the HTML file successfully!');
-    });
-    res.redirect('/result');
-    */
+    else if (results.length === 0) {
+      res.send("No Data Available");
+    }
+    else {
+      output = generateTable(results);
+      res.send(output);
+    }
   });
 })
-
 
 // Start the server
 app.listen(port, () => {
@@ -289,10 +297,10 @@ app.listen(port, () => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.get('/admin', (req, res) => {
-  if(flag==1)
+  if (flag == 1)
     res.sendFile(path.join(__dirname, 'public', 'admin.html'));
   else
-  res.sendFile(path.join(__dirname, 'public', 'login.html'));
+    res.sendFile(path.join(__dirname, 'public', 'login.html'));
   //res.render('admin_panel.ejs')
 });
 
@@ -300,7 +308,6 @@ app.get('/contactpage', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'contact.html'));
   //res.render('admin_panel.ejs')
 });
-
 
 // Login route
 app.post('/login', (req, res) => {
@@ -316,17 +323,13 @@ app.post('/login', (req, res) => {
       // Compare the entered password with the stored hash
       const user = results[0];
       //console.log(user);
-        if (password==user.tpassword) {
-          //res.status(200).json({ message: 'Login successful' });
-          flag=1;
-          res.redirect('/admin')
-        } else {
-          res.status(401).json({ message: 'Invalid email or password' });
-        }
+      if (password == user.tpassword) {
+        //res.status(200).json({ message: 'Login successful' });
+        flag = 1;
+        res.redirect('/admin')
+      } else {
+        res.status(401).json({ message: 'Invalid email or password' });
+      }
     }
   });
 });
-
-
-
-
